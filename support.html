@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Commit</title>
+  <style>
+    :root {
+      --blue: #4F9CF9;
+      --green: #34C759;
+      --bg: #0A0A0F;
+      --surface: #141420;
+      --surface2: #1C1C2E;
+      --text: #F2F2F7;
+      --subtext: #8E8E9A;
+      --border: rgba(255,255,255,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif; line-height: 1.7; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; border-bottom: 1px solid var(--border); }
+    .nav-logo { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text); }
+
+    /* HERO */
+    .support-hero { text-align: center; padding: 72px 24px 56px; max-width: 640px; margin: 0 auto; }
+    .page-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .support-hero h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 16px; }
+    .support-hero p { color: var(--subtext); font-size: 1.05rem; }
+
+    /* CONTACT */
+    .contact-banner { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; max-width: 680px; margin: 0 auto 56px; padding: 32px 36px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .contact-info h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+    .contact-info p { color: var(--subtext); font-size: 0.9rem; margin: 0; }
+    .btn-contact { background: var(--blue); color: #fff; padding: 12px 24px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; transition: opacity 0.2s; white-space: nowrap; }
+    .btn-contact:hover { opacity: 0.85; text-decoration: none; }
+
+    /* FAQ */
+    .faq-section { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+    .faq-group-title { font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; margin-top: 48px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { width: 100%; background: none; border: none; color: var(--text); text-align: left; font-family: inherit; font-size: 0.97rem; font-weight: 600; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .faq-q:hover { color: var(--blue); }
+    .faq-q .arrow { font-size: 1rem; color: var(--subtext); transition: transform 0.2s; flex-shrink: 0; }
+    .faq-a { color: var(--subtext); font-size: 0.92rem; padding-bottom: 20px; display: none; line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .arrow { transform: rotate(180deg); }
+
+    /* VERSION */
+    .version-note { text-align: center; margin-top: 48px; color: var(--subtext); font-size: 0.85rem; padding-bottom: 16px; }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-brand { font-size: 0.85rem; color: var(--subtext); }
+    .footer-links { display: flex; gap: 20px; list-style: none; }
+    .footer-links a { color: var(--subtext); font-size: 0.85rem; }
+    .footer-links a:hover { color: var(--text); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .contact-banner { padding: 24px; }
+      footer { flex-direction: column; padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">← Commit</a>
+</nav>
+
+<div class="support-hero">
+  <div class="page-label">Support</div>
+  <h1>How can we help?</h1>
+  <p>Find answers to common questions below, or reach out directly — we reply within 24 hours.</p>
+</div>
+
+<div style="padding: 0 24px;">
+  <div class="contact-banner">
+    <div class="contact-info">
+      <h3>Contact Sahil directly</h3>
+      <p>Bug report, feature request, billing question — just email us.</p>
+    </div>
+    <a href="mailto:simpletechman642@gmail.com?subject=Commit%20Support" class="btn-contact">Email Support</a>
+  </div>
+</div>
+
+<div class="faq-section">
+
+  <div class="faq-group-title">Getting Started</div>
+
+  <div class="faq-item">
+    <button class="faq-q">What is Commit? <span class="arrow">▼</span></button>
+    <div class="faq-a">Commit is a macOS menu bar app that tracks your daily deep work hours against a commitment you set. Unlike Pomodoro timers, Commit doesn't care about individual sessions — it tracks your cumulative total for the day and shows whether you're ahead or behind your goal.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">How do I set up my daily goal? <span class="arrow">▼</span></button>
+    <div class="faq-a">Click the Commit icon in your menu bar and open Settings. You'll see a slider to set your daily commitment anywhere from 30 minutes to 8 hours. Your goal applies to all active days going forward.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">What does the menu bar display show? <span class="arrow">▼</span></button>
+    <div class="faq-a">The menu bar shows your current status in real time:<br /><br />
+    • <strong>−1h 26m</strong> — you still have 1 hour and 26 minutes to go to reach your goal<br />
+    • <strong>+0h 45m</strong> — you've exceeded your goal by 45 minutes<br />
+    • <strong>Done</strong> — you've hit your goal exactly<br /><br />
+    During an active session, the timer updates every minute.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">What macOS version do I need? <span class="arrow">▼</span></button>
+    <div class="faq-a">Commit requires macOS 13 Ventura or later. It works on both Intel and Apple Silicon Macs.</div>
+  </div>
+
+  <div class="faq-group-title">Sessions & Tracking</div>
+
+  <div class="faq-item">
+    <button class="faq-q">Can I start and stop sessions multiple times in a day? <span class="arrow">▼</span></button>
+    <div class="faq-a">Yes — that's the whole point. Start a session when you sit down to focus, stop it when you take a break. All your sessions for the day accumulate toward your daily total automatically. There's no minimum session length.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">What if I forget to stop a session? <span class="arrow">▼</span></button>
+    <div class="faq-a">Sessions automatically stop at midnight when the day rolls over. If you forgot to stop and want to correct the time, you can delete the most recent session from the history view and log the correct time manually.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">Does Commit track what I'm working on? <span class="arrow">▼</span></button>
+    <div class="faq-a">No. Commit only tracks the duration of your sessions, not what you do during them. It has no access to your screen, apps, keyboard, or any other activity. Your sessions are simply time intervals you manually start and stop.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">Can I edit or delete past sessions? <span class="arrow">▼</span></button>
+    <div class="faq-a">Yes. Open the history view, find the session you want to modify, and you can delete it. Manual editing of session times is coming in a future update.</div>
+  </div>
+
+  <div class="faq-group-title">Pro Features</div>
+
+  <div class="faq-item">
+    <button class="faq-q">What is deficit rollover? <span class="arrow">▼</span></button>
+    <div class="faq-a">With deficit rollover (a Pro feature), if you fall short of your goal today, the shortfall is carried over and added to tomorrow's goal. For example, if your goal is 4 hours and you only logged 3, tomorrow's goal becomes 5 hours. The rollover is capped at 2× your daily goal to prevent snowballing.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">How do I start the Pro free trial? <span class="arrow">▼</span></button>
+    <div class="faq-a">Tap "Go Pro" inside the app. You'll see the subscription options — a 3-day free trial is offered to new subscribers who have never subscribed before. Apple handles the trial and billing. You won't be charged until the trial ends.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">How do I cancel my Pro subscription? <span class="arrow">▼</span></button>
+    <div class="faq-a">All subscriptions are managed by Apple. To cancel:<br /><br />
+    1. Open System Settings (or System Preferences) on your Mac<br />
+    2. Click your Apple ID<br />
+    3. Go to Subscriptions<br />
+    4. Find Commit and click Cancel<br /><br />
+    You can also manage subscriptions at <a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener">apps.apple.com/account/subscriptions</a>.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">I was charged but the Pro features aren't showing. What do I do? <span class="arrow">▼</span></button>
+    <div class="faq-a">Try restoring your purchases: open the Commit menu bar popover, tap the settings icon, and choose "Restore Purchases." If that doesn't work, email us at <a href="mailto:simpletechman642@gmail.com">simpletechman642@gmail.com</a> with your App Store receipt and we'll sort it out.</div>
+  </div>
+
+  <div class="faq-group-title">Privacy & Data</div>
+
+  <div class="faq-item">
+    <button class="faq-q">Does Commit sync to the cloud or share my data? <span class="arrow">▼</span></button>
+    <div class="faq-a">No. All your data is stored locally on your Mac using Apple's SwiftData framework. Commit has no servers, no user accounts, and sends no data anywhere. iCloud sync is not available in the current version.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">What data does Commit collect? <span class="arrow">▼</span></button>
+    <div class="faq-a">Commit collects no personal data. The only data that exists is your session history stored locally in the app's sandbox on your device. See our <a href="privacy.html">Privacy Policy</a> for full details.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">How do I delete all my data? <span class="arrow">▼</span></button>
+    <div class="faq-a">Uninstalling the app from your Mac removes all locally stored data. You can also delete individual sessions from within the app's history view.</div>
+  </div>
+
+  <div class="faq-group-title">Troubleshooting</div>
+
+  <div class="faq-item">
+    <button class="faq-q">The Commit icon isn't showing in my menu bar. What should I do? <span class="arrow">▼</span></button>
+    <div class="faq-a">Your menu bar may be full. Try holding Command (⌘) and dragging other icons to make space, or check if the icon is hidden by clicking the Control Center icon. If the problem persists, try quitting and relaunching Commit from your Applications folder.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">The timer seems to have the wrong time. What's happening? <span class="arrow">▼</span></button>
+    <div class="faq-a">Commit calculates your total based on session durations stored locally. If you changed your Mac's system clock or traveled across time zones during an active session, the time may appear off. Stopping and starting a new session should reset the display. If the issue persists, email us.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q">I found a bug. How do I report it? <span class="arrow">▼</span></button>
+    <div class="faq-a">Email <a href="mailto:simpletechman642@gmail.com?subject=Commit%20Bug%20Report">simpletechman642@gmail.com</a> with a description of what happened, your macOS version, and any steps to reproduce it. Screenshots or screen recordings are very helpful. We read every report.</div>
+  </div>
+
+  <div class="version-note">Current version: Commit 1.0 &middot; For macOS 13 Ventura+</div>
+</div>
+
+<footer>
+  <div class="footer-brand">&copy; 2026 Sahil Pabby &middot; Commit</div>
+  <ul class="footer-links">
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Use</a></li>
+    <li><a href="support.html">Support</a></li>
+  </ul>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
