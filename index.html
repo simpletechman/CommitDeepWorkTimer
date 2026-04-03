@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commit — Deep Work Timer for Mac</title>
+  <style>
+    :root {
+      --blue: #4F9CF9;
+      --green: #34C759;
+      --red: #FF453A;
+      --bg: #0A0A0F;
+      --surface: #141420;
+      --surface2: #1C1C2E;
+      --text: #F2F2F7;
+      --subtext: #8E8E9A;
+      --border: rgba(255,255,255,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif; line-height: 1.6; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; position: sticky; top: 0; background: rgba(10,10,15,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; }
+    .nav-logo { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--subtext); font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-cta { background: var(--blue); color: #fff; padding: 8px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; text-decoration: none; }
+
+    /* HERO */
+    .hero { text-align: center; padding: 100px 24px 80px; max-width: 780px; margin: 0 auto; }
+    .hero-badge { display: inline-block; background: rgba(79,156,249,0.12); color: var(--blue); border: 1px solid rgba(79,156,249,0.3); border-radius: 100px; padding: 4px 14px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 28px; text-transform: uppercase; }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 24px; }
+    .hero h1 span { color: var(--blue); }
+    .hero p { font-size: 1.2rem; color: var(--subtext); max-width: 560px; margin: 0 auto 40px; }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--blue); color: #fff; padding: 14px 32px; border-radius: 12px; font-size: 1rem; font-weight: 700; transition: opacity 0.2s; display: inline-block; }
+    .btn-primary:hover { opacity: 0.85; text-decoration: none; }
+    .btn-secondary { background: var(--surface2); color: var(--text); padding: 14px 32px; border-radius: 12px; font-size: 1rem; font-weight: 600; border: 1px solid var(--border); transition: background 0.2s; display: inline-block; }
+    .btn-secondary:hover { background: rgba(255,255,255,0.08); text-decoration: none; }
+    .hero-note { margin-top: 16px; font-size: 0.85rem; color: var(--subtext); }
+
+    /* MENU BAR PREVIEW */
+    .menubar-demo { max-width: 640px; margin: 60px auto; padding: 0 24px; }
+    .menubar-mock { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .menubar-top { background: rgba(255,255,255,0.04); padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
+    .menubar-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .menubar-body { padding: 28px; text-align: center; }
+    .menubar-time { font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; color: var(--red); margin-bottom: 8px; }
+    .menubar-time.surplus { color: var(--green); }
+    .menubar-label { font-size: 0.85rem; color: var(--subtext); }
+    .menubar-progress { height: 6px; background: rgba(255,255,255,0.08); border-radius: 100px; margin: 20px 0; overflow: hidden; }
+    .menubar-fill { height: 100%; background: var(--blue); border-radius: 100px; width: 72%; }
+    .menubar-stats { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--subtext); }
+
+    /* FEATURES */
+    section { padding: 80px 24px; }
+    .section-label { text-align: center; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .section-title { text-align: center; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+    .section-sub { text-align: center; color: var(--subtext); max-width: 520px; margin: 0 auto 56px; font-size: 1.05rem; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto; }
+    .feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: border-color 0.2s; }
+    .feature-card:hover { border-color: rgba(79,156,249,0.3); }
+    .feature-icon { font-size: 1.8rem; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .feature-card p { color: var(--subtext); font-size: 0.9rem; line-height: 1.6; }
+
+    /* HOW IT WORKS */
+    .how-section { background: var(--surface); }
+    .steps { display: flex; flex-direction: column; gap: 0; max-width: 640px; margin: 0 auto; }
+    .step { display: flex; gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-num { width: 40px; height: 40px; border-radius: 50%; background: rgba(79,156,249,0.12); border: 1px solid rgba(79,156,249,0.3); color: var(--blue); font-weight: 800; font-size: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-content h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+    .step-content p { color: var(--subtext); font-size: 0.9rem; }
+
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 720px; margin: 0 auto; }
+    .pricing-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 36px; }
+    .pricing-card.featured { border-color: var(--blue); position: relative; }
+    .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; padding: 4px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }
+    .pricing-tier { font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--subtext); margin-bottom: 12px; }
+    .pricing-price { font-size: 2.8rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 4px; }
+    .pricing-price span { font-size: 1rem; font-weight: 500; color: var(--subtext); }
+    .pricing-period { font-size: 0.85rem; color: var(--subtext); margin-bottom: 28px; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .pricing-features li { font-size: 0.9rem; display: flex; align-items: flex-start; gap: 10px; }
+    .pricing-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .pricing-features li.muted { color: var(--subtext); }
+    .pricing-features li.muted::before { content: '–'; color: var(--subtext); }
+    .btn-tier { display: block; text-align: center; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.95rem; transition: opacity 0.2s; }
+    .btn-tier:hover { opacity: 0.8; text-decoration: none; }
+    .btn-tier.primary { background: var(--blue); color: #fff; }
+    .btn-tier.outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+
+    /* QUOTE */
+    .quote-section { text-align: center; max-width: 720px; margin: 0 auto; padding: 80px 24px; }
+    blockquote { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700; letter-spacing: -0.5px; line-height: 1.4; color: var(--text); margin-bottom: 20px; }
+    blockquote::before, blockquote::after { content: '"'; color: var(--blue); }
+    .quote-attr { color: var(--subtext); font-size: 0.9rem; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: gap; }
+    .footer-brand { font-size: 0.9rem; color: var(--subtext); }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { color: var(--subtext); font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      footer { flex-direction: column; gap: 16px; padding: 32px 20px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Commit</div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="support.html">Support</a></li>
+  </ul>
+  <a href="#pricing" class="nav-cta">Download</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Available on Mac</div>
+  <h1>Stop counting sessions.<br /><span>Start keeping commitments.</span></h1>
+  <p>Commit lives in your menu bar and tracks cumulative daily deep work hours against a goal you set. No Pomodoro. No gamification. Just honest accountability.</p>
+  <div class="hero-actions">
+    <a href="#pricing" class="btn-primary">Download on the Mac App Store</a>
+    <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+  </div>
+  <p class="hero-note">Free to start &middot; macOS 13 Ventura+ &middot; No account required</p>
+</section>
+
+<div class="menubar-demo">
+  <div class="menubar-mock">
+    <div class="menubar-top">
+      <div class="menubar-dot" style="background:#FF5F57"></div>
+      <div class="menubar-dot" style="background:#FEBC2E"></div>
+      <div class="menubar-dot" style="background:#28C840"></div>
+    </div>
+    <div class="menubar-body">
+      <div class="menubar-time">−1h 26m</div>
+      <div class="menubar-label">Remaining today &middot; Goal: 4h 00m</div>
+      <div class="menubar-progress"><div class="menubar-fill"></div></div>
+      <div class="menubar-stats">
+        <span>Logged today: 2h 34m</span>
+        <span>72% complete</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="section-label">Features</div>
+  <h2 class="section-title">Everything you need. Nothing you don't.</h2>
+  <p class="section-sub">Commit is intentionally simple. It does one thing well: shows you whether you kept your word today.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⏱</div>
+      <h3>Menu Bar Timer</h3>
+      <p>Always-visible countdown in your menu bar shows time remaining, surplus, or deficit at a glance. Never lose track of where you stand.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Daily Commitments</h3>
+      <p>Set a daily goal from 30 minutes to 8 hours. Start and stop sessions throughout the day — they all accumulate toward your total.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📉</div>
+      <h3>Deficit Rollover <span style="font-size:0.7rem;background:rgba(79,156,249,0.15);color:var(--blue);padding:2px 8px;border-radius:4px;font-weight:600;">Pro</span></h3>
+      <p>Fell short yesterday? Today's goal automatically increases by the deficit (capped at 2× your goal) so you stay genuinely accountable.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <h3>Session History</h3>
+      <p>Review the last 7 days free, or your full history with Pro. Color-coded daily tiles — green for met, red for missed — show the truth at a glance.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Weekly Report <span style="font-size:0.7rem;background:rgba(79,156,249,0.15);color:var(--blue);padding:2px 8px;border-radius:4px;font-weight:600;">Pro</span></h3>
+      <p>A simple bar chart of hours vs. goal for each day of the week. Spot your patterns and adjust your commitments accordingly.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🗓</div>
+      <h3>Custom Active Days <span style="font-size:0.7rem;background:rgba(79,156,249,0.15);color:var(--blue);padding:2px 8px;border-radius:4px;font-weight:600;">Pro</span></h3>
+      <p>Choose any combination of days — not just Mon–Fri. Weekend warrior or unconventional schedule? Commit adapts to you.</p>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works" class="how-section">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">Up and running in 60 seconds</h2>
+  <p class="section-sub">No account. No setup. Just open the app and start working.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Set your daily commitment</h3>
+        <p>Choose how many hours of deep work you want to do today. You can change this any time.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Start a session when you sit down to work</h3>
+        <p>One tap to start, one tap to stop. Every session counts toward your daily total — no minimum duration.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Watch the menu bar</h3>
+        <p>Commit shows your running deficit or surplus throughout the day. Green means you're ahead. Red means you need to get back to work.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>End the day with the truth</h3>
+        <p>Did you keep your commitment? The history view doesn't sugarcoat it. That's the point.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quote-section">
+  <blockquote>Set a daily commitment. Track your hours from the menu bar. See your surplus or deficit at a glance. No Pomodoro. No gamification. Just honest accountability.</blockquote>
+</div>
+
+<section id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2 class="section-title">Start free. Go Pro when you're ready.</h2>
+  <p class="section-sub">3-day free trial on Pro. Cancel any time. No hidden fees.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Free</div>
+      <div class="pricing-price">$0</div>
+      <div class="pricing-period">Forever free</div>
+      <ul class="pricing-features">
+        <li>Menu bar timer</li>
+        <li>Start/stop sessions</li>
+        <li>Daily tracking & surplus/deficit</li>
+        <li>7-day history</li>
+        <li class="muted">Deficit rollover</li>
+        <li class="muted">Weekly report</li>
+        <li class="muted">Custom active days</li>
+      </ul>
+      <a href="#" class="btn-tier outline">Download Free</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-tier">Pro</div>
+      <div class="pricing-price">$2.99 <span>/ week</span></div>
+      <div class="pricing-period">or $19.99 / year &middot; 3-day free trial</div>
+      <ul class="pricing-features">
+        <li>Everything in Free</li>
+        <li>Deficit rollover</li>
+        <li>Weekly report</li>
+        <li>Custom active days</li>
+        <li>Unlimited session history</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="#" class="btn-tier primary">Start Free Trial</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">&copy; 2026 Sahil Pabby &middot; Commit</div>
+  <ul class="footer-links">
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Use</a></li>
+    <li><a href="support.html">Support</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
